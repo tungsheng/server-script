@@ -16,6 +16,7 @@ sudo apt-get -y install apt-transport-https ca-certificates software-properties-
 
 echo -ne "Installing nvm...\n"
 wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+command -v nvm
 
 echo -ne "Installing node...\n"
 nvm install node
@@ -23,7 +24,7 @@ nvm install node
 echo -ne "Installing yarn...\n"
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-apt-get install yarn
+sudo apt-get update && sudo apt-get install yarn
 
 echo -ne "Installing fasd...\n"
 wget -c https://github.com/clvv/fasd/tarball/1.0.1 -O - | tar -xz
