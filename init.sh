@@ -11,7 +11,7 @@ sudo apt-get -y install make locate
 sudo apt-get -y install whois openssh-server
 sudo apt-get -y install curl wget dirmngr
 sudo apt-get -y install silversearcher-ag
-sudo apt-get -y install python-pip
+sudo apt-get -y install python-pip python3-pip
 sudo apt-get -y install apt-transport-https ca-certificates software-properties-common
 
 echo -ne "Installing nvm...\n"
@@ -43,6 +43,8 @@ cp $repo/aliases/custom.aliases.bash $HOME/.bash_it/aliases/
 
 echo -ne "Installing neovim...\n"
 sudo apt-get -y install neovim
+pip install neovim
+pip3 install neovim
 
 echo "Install color...\n"
 tic -x $repo/color/xterm-256color-italic.terminfo
