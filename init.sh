@@ -1,7 +1,6 @@
 #!/bin/bash
 export log_file=$HOME/install_progress_log.txt
-export DOT=dotfiles
-export DOTFILES=$HOME/$DOT
+export folder=$HOME/server-script
 
 echo -ne "Initiating...\n"
 sudo apt-get -y update
@@ -33,8 +32,8 @@ echo -ne "Installing neovim...\n"
 sudo apt-get -y install neovim
 
 echo "Install color...\n"
-tic -x $DOTFILES/color/xterm-256color-italic.terminfo
-tic -x $DOTFILES/color/tmux-256color-italic.terminfo
+tic -x $folder/color/xterm-256color-italic.terminfo
+tic -x $folder/color/tmux-256color-italic.terminfo
 
 echo "Update packages...\n"
 sudo apt-get -y update
@@ -45,8 +44,8 @@ if [ ! -d $HOME/.config ]; then
     echo "Creating ~/.config"
     mkdir -p $HOME/.config
 fi
-# configs=$( find -path "$DOTFILES/config.symlink" -maxdepth 1 )
-for config in $DOTFILES/config/*; do
+# configs=$( find -path "$folder/config.symlink" -maxdepth 1 )
+for config in $folder/config/*; do
     target=$HOME/.config/$( basename $config )
     if [ -e $target ]; then
         echo "~${target#$HOME} already exists... Skipping."
