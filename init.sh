@@ -55,6 +55,7 @@ rm -rf clvv-fasd-4822024/
 echo -ne "Installing bash-it...\n"
 git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
 ~/.bash_it/install.sh
+source /root/.bashrc
 bash-it enable completion dirs docker docker-compose git go
 bash-it enable alias git docker docker-compose
 bash-it enable plugin git docker docker-compose fasd
