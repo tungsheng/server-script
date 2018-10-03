@@ -9,11 +9,10 @@ sudo apt-get -y update
 echo -ne "Installing utils...\n"
 sudo apt-get -y install git tig 
 sudo apt-get -y install make locate
-sudo apt-get -y install whois
+sudo apt-get -y install whois openssh-server
 sudo apt-get -y install curl wget dirmngr
 sudo apt-get -y install silversearcher-ag
 sudo apt-get -y install python-pip
-sudo apt-get -y install openssh-server
 sudo apt-get -y install apt-transport-https ca-certificates software-properties-common
 
 echo -ne "Installing fasd...\n"
@@ -25,6 +24,7 @@ rm -rf clvv-fasd-4822024/
 
 echo -ne "Installing bash-it...\n"
 git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
+~/.bash_it/install.sh
 bash-it enable completion dirs docker docker-compose git go
 bash-it enable alias git docker docker-compose
 bash-it enable plugin git docker docker-compose fasd
