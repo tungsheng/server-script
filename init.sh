@@ -1,6 +1,6 @@
 #!/bin/bash
 export log_file=$HOME/install_progress_log.txt
-export folder=$HOME/server-script
+export repo=$HOME/server-script
 
 echo -ne "Initiating...\n"
 sudo apt-get -y update
@@ -27,13 +27,14 @@ git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
 bash-it enable completion dirs docker docker-compose git go
 bash-it enable alias git docker docker-compose
 bash-it enable plugin git docker docker-compose fasd
+cp $repo/aliases/custom.aliases.bash .bash_it/aliases/
 
 echo -ne "Installing neovim...\n"
 sudo apt-get -y install neovim
 
 echo "Install color...\n"
-tic -x $folder/color/xterm-256color-italic.terminfo
-tic -x $folder/color/tmux-256color-italic.terminfo
+tic -x $repo/color/xterm-256color-italic.terminfo
+tic -x $repo/color/tmux-256color-italic.terminfo
 
 echo "Update packages...\n"
 sudo apt-get -y update
@@ -44,8 +45,8 @@ if [ ! -d $HOME/.config ]; then
     echo "Creating ~/.config"
     mkdir -p $HOME/.config
 fi
-# configs=$( find -path "$folder/config.symlink" -maxdepth 1 )
-for config in $folder/config/*; do
+# configs=$( find -path "$repo/config.symlink" -maxdepth 1 )
+for config in $repo/config/*; do
     target=$HOME/.config/$( basename $config )
     if [ -e $target ]; then
         echo "~${target#$HOME} already exists... Skipping."
