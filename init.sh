@@ -63,7 +63,8 @@ cp $repo/aliases/custom.aliases.bash $HOME/.bash_it/aliases/
 echo -ne "Installing neovim...\n"
 curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
 chmod u+x nvim.appimage
-./nvim.appimage
+pip2 install neovim
+pip3 install neovim
 
 echo "Install color...\n"
 tic -x $repo/color/xterm-256color-italic.terminfo
