@@ -8,6 +8,8 @@ sudo apt-get -y update
 echo -ne "Installing utils...\n"
 sudo apt-get -y install \
     apt-transport-https \
+    autoconf \
+    automake \
     ca-certificates \
     cmake \
     curl \
@@ -59,6 +61,7 @@ bash-it enable plugin git docker docker-compose fasd
 cp $repo/aliases/custom.aliases.bash $HOME/.bash_it/aliases/
 
 echo -ne "Installing neovim...\n"
+pushd .
 mkdir -p ~/src
 cd ~/src || exit
 if [ ! -e ~/src/neovim ]; then
@@ -79,7 +82,9 @@ make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=/
 make install
 
 # Enable use of python plugins
+pip2 install --user --upgrade neovim
 pip3 install --user --upgrade neovim
+popd
 
 echo "Install color...\n"
 tic -x $repo/color/xterm-256color-italic.terminfo
