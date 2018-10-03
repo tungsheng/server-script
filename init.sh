@@ -56,10 +56,17 @@ echo -ne "Installing bash-it...\n"
 git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
 ~/.bash_it/install.sh
 source /root/.bashrc
+
+# enable completion/plugin/alias
 bash-it enable completion dirs docker docker-compose git go
 bash-it enable alias git docker docker-compose
 bash-it enable plugin git docker docker-compose fasd
+
+# add custom alias
 cp $repo/aliases/custom.aliases.bash $HOME/.bash_it/aliases/
+
+# use bakke theme
+sed -i 's/bobby/bakke/g' .bashrc
 
 echo -ne "Installing neovim...\n"
 curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
