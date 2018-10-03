@@ -6,13 +6,30 @@ echo -ne "Initiating...\n"
 sudo apt-get -y update
 
 echo -ne "Installing utils...\n"
-sudo apt-get -y install git tig 
-sudo apt-get -y install make locate
-sudo apt-get -y install whois openssh-server
-sudo apt-get -y install curl wget dirmngr
-sudo apt-get -y install silversearcher-ag
-sudo apt-get -y install python-pip python3-pip
-sudo apt-get -y install apt-transport-https ca-certificates software-properties-common
+sudo apt-get -y install \
+    apt-transport-https \
+    ca-certificates \
+    cmake \
+    curl \
+    dirmngr \
+    g++ \
+    git \
+    libncurses5-dev \
+    libtool \
+    libtool-bin \
+    libunibilium-dev \
+    libunibilium0 \
+    locate \
+    make \
+    openssh-server \
+    pkg-config \
+    python-pip \
+    python3-pip \
+    silversearcher-ag \
+    software-properties-common \
+    tig \
+    whois \
+    wget
 
 echo -ne "Installing nvm...\n"
 wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
@@ -42,9 +59,27 @@ bash-it enable plugin git docker docker-compose fasd
 cp $repo/aliases/custom.aliases.bash $HOME/.bash_it/aliases/
 
 echo -ne "Installing neovim...\n"
-sudo apt-get -y install neovim
-pip install neovim
-pip3 install neovim
+mkdir -p ~/src
+cd ~/src || exit
+if [ ! -e ~/src/neovim ]; then
+  git clone https://github.com/neovim/neovim
+else
+  cd neovim || exit
+  git pull origin
+fi
+
+cd ~/src/neovim || exit
+git checkout master
+#Remove old build dir and .deps dir
+rm -rf build/
+rm -rf .deps/
+
+# Build and install neovim
+make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=/usr/local/"
+make install
+
+# Enable use of python plugins
+pip3 install --user --upgrade neovim
 
 echo "Install color...\n"
 tic -x $repo/color/xterm-256color-italic.terminfo
