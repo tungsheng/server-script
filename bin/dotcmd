@@ -1,0 +1,63 @@
+#!/bin/bash
+export serv="fullinn-$2"
+export DOT=dotfiles
+export DOTBACK=dotfiles-backup
+export DOTFILES=$HOME/$DOT
+export BACKUP_DIR=$HOME/$DOTBACK
+
+error() {
+    echo "could not execute cmd... Exit!"
+}
+
+# dbget gets db data from server db to local db
+dbget() {
+    source ./scripts/util/db-get.sh
+}
+
+# dkinst install docker script
+dkinst() {
+    source ./docker-install.sh
+}
+
+# inst install all script
+osx-inst() {
+    source ~/dotfiles/install.sh
+}
+
+# inst install all script
+deb-inst() {
+    echo -e "\nStart installing on Debian..."
+    source $DOTFILES/install/debian/init.sh
+}
+
+# copy ssh file
+scpkey() {
+    scp ~/.ssh/id_rsa "$1:~/.ssh"
+    scp ~/.ssh/id_rsa.pub "$1:~/.ssh"
+}
+
+
+if [ $# -gt 0 ]; then
+    case $1 in
+        db-get | dbget )        
+            dbget
+            exit;;
+        dk-inst | dkinst )
+            dkinst
+            exit;;
+        scpkey )
+            scpkey $2
+            exit;;
+        osx-inst )
+            osx-inst
+            exit;;
+        deb-inst )
+            deb-inst
+            exit;;
+        * )                     
+            error
+            exit 1
+    esac
+else
+    echo "Need to pass args..."
+fi
