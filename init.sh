@@ -61,30 +61,9 @@ bash-it enable plugin git docker docker-compose fasd
 cp $repo/aliases/custom.aliases.bash $HOME/.bash_it/aliases/
 
 echo -ne "Installing neovim...\n"
-pushd .
-mkdir -p ~/src
-cd ~/src || exit
-if [ ! -e ~/src/neovim ]; then
-  git clone https://github.com/neovim/neovim
-else
-  cd neovim || exit
-  git pull origin
-fi
-
-cd ~/src/neovim || exit
-git checkout master
-#Remove old build dir and .deps dir
-rm -rf build/
-rm -rf .deps/
-
-# Build and install neovim
-make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=/usr/local/"
-make install
-
-# Enable use of python plugins
-pip2 install --user --upgrade neovim
-pip3 install --user --upgrade neovim
-popd
+curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+chmod u+x nvim.appimage
+./nvim.appimage
 
 echo "Install color...\n"
 tic -x $repo/color/xterm-256color-italic.terminfo
