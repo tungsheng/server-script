@@ -14,6 +14,17 @@ sudo apt-get -y install silversearcher-ag
 sudo apt-get -y install python-pip
 sudo apt-get -y install apt-transport-https ca-certificates software-properties-common
 
+echo -ne "Installing nvm...\n"
+wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+
+echo -ne "Installing node...\n"
+nvm install node
+
+echo -ne "Installing yarn...\n"
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+apt-get install yarn
+
 echo -ne "Installing fasd...\n"
 wget -c https://github.com/clvv/fasd/tarball/1.0.1 -O - | tar -xz
 cd clvv-fasd-4822024/
@@ -27,7 +38,7 @@ git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
 bash-it enable completion dirs docker docker-compose git go
 bash-it enable alias git docker docker-compose
 bash-it enable plugin git docker docker-compose fasd
-cp $repo/aliases/custom.aliases.bash .bash_it/aliases/
+cp $repo/aliases/custom.aliases.bash $HOME/.bash_it/aliases/
 
 echo -ne "Installing neovim...\n"
 sudo apt-get -y install neovim
