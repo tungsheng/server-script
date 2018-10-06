@@ -1,2 +1,2 @@
 # Aliases
-alias vim='./nvim.appimage'
+alias vim='~/nvim.appimage'
