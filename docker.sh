@@ -8,9 +8,6 @@ println() {
     echo -e "\n"
 }
 
-# remove older docker compose if exist
-which docker-compose || sudo rm /usr/local/bin/docker-compose
-
 # install docker
 curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
