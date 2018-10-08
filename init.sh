@@ -2,6 +2,12 @@
 export log_file=$HOME/install_progress_log.txt
 export repo=$HOME/server-script
 
+echo -ne "Disable root user...\n"
+sudo passwd -l root
+
+echo -ne "Add user...\n"
+adduser deploy
+
 echo -ne "Initiating...\n"
 sudo apt-get -y update
 
