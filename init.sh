@@ -9,10 +9,10 @@ echo -ne "Add user...\n"
 adduser deploy
 
 echo -ne "Initiating...\n"
-sudo apt-get -y update
+sudo apt -y update
 
 echo -ne "Installing utils...\n"
-sudo apt-get -y install \
+sudo apt -y install \
     apt-transport-https \
     autoconf \
     automake \
@@ -22,6 +22,7 @@ sudo apt-get -y install \
     dirmngr \
     g++ \
     git \
+    gnupg2 \
     libncurses5-dev \
     libtool \
     libtool-bin \
@@ -49,7 +50,7 @@ nvm install node
 echo -ne "Installing yarn...\n"
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-sudo apt-get update && sudo apt-get install yarn
+sudo apt update && sudo apt install yarn
 
 echo -ne "Installing fasd...\n"
 wget -c https://github.com/clvv/fasd/tarball/1.0.1 -O - | tar -xz
@@ -85,7 +86,7 @@ tic -x $repo/color/xterm-256color-italic.terminfo
 tic -x $repo/color/tmux-256color-italic.terminfo
 
 echo "Update packages...\n"
-sudo apt-get -y update
+sudo apt -y update
 
 echo -e "\n\ninstalling to ~/.config"
 echo "=============================="
