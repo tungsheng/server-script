@@ -27,7 +27,9 @@ println "Show docker-compose version"
 docker-compose --version
 
 # add user to docker group
-println "add deploy user to docker group"
+println "Add docker group"
+sudo groupadd docker
+println "Add user to docker group"
 usermod -aG docker deploy
 
 println "docker successfully installed!!"
