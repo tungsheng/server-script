@@ -22,10 +22,10 @@ println "Disable user password..."
 sudo passwd -l root
 
 println "Initiating..."
-sudo apt -y update
+sudo apt-get -y update
 
 println "Installing utils..."
-sudo apt -y install \
+sudo apt-get -y install \
     apt-transport-https \
     autoconf \
     automake \
@@ -70,7 +70,7 @@ nvm install node
 println "Installing yarn..."
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-sudo apt update && sudo apt install yarn
+sudo apt-get update && sudo apt-get install yarn
 
 println "Installing fasd..."
 sudo wget -c https://github.com/clvv/fasd/tarball/1.0.1 -O - | tar -xz
@@ -106,7 +106,7 @@ sudo tic -x $repo/color/xterm-256color-italic.terminfo
 sudo tic -x $repo/color/tmux-256color-italic.terminfo
 
 println "Update packages..."
-sudo apt -y update
+sudo apt-get -y update
 
 println "installing to ~/.config"
 if [ ! -d $HOME/.config ]; then
