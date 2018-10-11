@@ -8,10 +8,10 @@ println() {
 println "Pulling drone image..."
 docker pull drone/drone:0.8
 
-plrintln "Create folder..."
+println "Create folder..."
 sudo mkdir /etc/drone
 
-plrintln "Create docker-compose file..."
+println "Create docker-compose file..."
 droneDCF=/etc/drone/docker-compose.yml
 [ -f "$droneDCF" ] || sudo touch $droneDCF
 sudo cat <<EOT > $droneDCF
