@@ -18,9 +18,6 @@ usermod -aG sudo deploy
 sudo cp -r ~/.ssh /home/deploy
 sudo chown -R deploy:deploy /home/deploy/.ssh
 
-println "Disable user password..."
-sudo passwd -l root
-
 println "Initiating..."
 sudo apt -y update
 
