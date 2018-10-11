@@ -4,7 +4,7 @@ export repo=$HOME/server-script
 
 println() {
     echo -ne "\n$1"
-    echo "======================\n"
+    echo -ne"\n======================\n"
 }
 
 println "Disable root password..."
