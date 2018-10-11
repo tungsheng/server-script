@@ -123,3 +123,5 @@ for config in $repo/config/*; do
         sudo ln -s $config $target
     fi
 done
+
+exit 0
