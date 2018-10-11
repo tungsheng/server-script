@@ -7,16 +7,19 @@ println() {
     echo "======================\n"
 }
 
-println "Disable root user..."
+println "Disable root password..."
 sudo passwd -l root
 
 println "Add user..."
-adduser deploy
+sudo adduser deploy
 
 println "Add user to sudo..."
 usermod -aG sudo deploy
-cp -r ~/.ssh /home/sammy
-chown -R sammy:sammy /home/sammy/.ssh
+sudo cp -r ~/.ssh /home/deploy
+sudo chown -R deploy:deploy /home/deploy/.ssh
+
+println "Disable user password..."
+sudo passwd -l root
 
 println "Initiating..."
 sudo apt -y update
@@ -70,7 +73,7 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/source
 sudo apt update && sudo apt install yarn
 
 println "Installing fasd..."
-wget -c https://github.com/clvv/fasd/tarball/1.0.1 -O - | tar -xz
+sudo wget -c https://github.com/clvv/fasd/tarball/1.0.1 -O - | tar -xz
 cd clvv-fasd-4822024/
 make install
 cd ../
@@ -79,28 +82,28 @@ rm -rf clvv-fasd-4822024/
 println "Installing bash-it..."
 git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
 ~/.bash_it/install.sh
-source /root/.bashrc
+sudo source /root/.bashrc
 
 # enable completion/plugin/alias
-bash-it enable completion dirs docker docker-compose git go
-bash-it enable alias git docker docker-compose
-bash-it enable plugin git docker docker-compose fasd
+sudo bash-it enable completion dirs docker docker-compose git go
+sudo bash-it enable alias git docker docker-compose
+sudo bash-it enable plugin git docker docker-compose fasd
 
 # add custom alias
-cp $repo/aliases/custom.aliases.bash $HOME/.bash_it/aliases/
+sudo cp $repo/aliases/custom.aliases.bash $HOME/.bash_it/aliases/
 
 # use bakke theme
-sed -i 's/bobby/bakke/g' .bashrc
+sudo sed -i 's/bobby/bakke/g' .bashrc
 
 println "Installing neovim..."
-curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
-chmod u+x nvim.appimage
-pip2 install neovim
-pip3 install neovim
+sudo curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+sudo chmod u+x nvim.appimage
+sudo pip2 install neovim
+sudo pip3 install neovim
 
 println "Install color..."
-tic -x $repo/color/xterm-256color-italic.terminfo
-tic -x $repo/color/tmux-256color-italic.terminfo
+sudo tic -x $repo/color/xterm-256color-italic.terminfo
+sudo tic -x $repo/color/tmux-256color-italic.terminfo
 
 println "Update packages..."
 sudo apt -y update
@@ -108,7 +111,7 @@ sudo apt -y update
 println "installing to ~/.config"
 if [ ! -d $HOME/.config ]; then
     echo "Creating ~/.config"
-    mkdir -p $HOME/.config
+    sudo mkdir -p $HOME/.config
 fi
 # configs=$( find -path "$repo/config.symlink" -maxdepth 1 )
 for config in $repo/config/*; do
@@ -117,6 +120,6 @@ for config in $repo/config/*; do
         echo "~${target#$HOME} already exists... Skipping."
     else
         echo "Creating symlink for $config"
-        ln -s $config $target
+        sudo ln -s $config $target
     fi
 done
