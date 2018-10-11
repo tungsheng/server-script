@@ -8,6 +8,11 @@ sudo passwd -l root
 echo -ne "Add user...\n"
 adduser deploy
 
+echo -ne "Add user to sudo...\n"
+usermod -aG sudo deploy
+
+source "./yespasswd.sh"
+
 echo -ne "Initiating...\n"
 sudo apt -y update
 
