@@ -41,9 +41,6 @@ sudo apt -y install \
     libunibilium0 \
     locate \
     make \
-    man-db \
-    openssh-server \
-    openssh-client \
     pkg-config \
     python-pip \
     python3-pip \
