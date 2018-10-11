@@ -67,7 +67,7 @@ EOT
 
 droneSystemd=/etc/systemd/system/drone.service
 [ -f "$droneSystemd" ] || sudo touch $droneSystemd
-sudo cat <<EOT > $agentEnv
+sudo cat <<EOT > $droneSystemd
 [Unit]
 Description=Drone server
 After=docker.service nginx.service
