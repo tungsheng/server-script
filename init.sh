@@ -20,6 +20,7 @@ sudo chown -R deploy:deploy /home/deploy/.ssh
 
 println "Initiating..."
 sudo apt -y update
+sudo apt -y upgrade
 
 println "Installing utils..."
 sudo apt -y install \
