@@ -42,6 +42,7 @@ sudo apt -y install \
     make \
     man-db \
     openssh-server \
+    openssh-client \
     pkg-config \
     python-pip \
     python3-pip \
