@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo -ne "Edit sshd config"
-sed -i "/PasswordAuthentication/d" /etc/ssh/sshd_config
+sed -i "/PasswordAuthentication/g" /etc/ssh/sshd_config
 cat <<EOT >> /etc/ssh/sshd_config
 PasswordAuthentication no
 EOT
