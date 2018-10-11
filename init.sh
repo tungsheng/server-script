@@ -3,8 +3,8 @@ export log_file=$HOME/install_progress_log.txt
 export repo=$HOME/server-script
 
 println() {
-    echo -ne "\n$1"
-    echo -ne "\n======================\n"
+    echo -ne "\n\n$1"
+    echo -ne "\n===========================================\n"
 }
 
 println "Disable root password..."
