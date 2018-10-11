@@ -78,12 +78,12 @@ rm -rf clvv-fasd-4822024/
 println "Installing bash-it..."
 git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
 ~/.bash_it/install.sh
-sudo source /root/.bashrc
+source /root/.bashrc
 
 # enable completion/plugin/alias
-sudo bash-it enable completion dirs docker docker-compose git go
-sudo bash-it enable alias git docker docker-compose
-sudo bash-it enable plugin git docker docker-compose fasd
+bash-it enable completion dirs docker docker-compose git go
+bash-it enable alias git docker docker-compose
+bash-it enable plugin git docker docker-compose fasd
 
 # add custom alias
 sudo cp $repo/aliases/custom.aliases.bash $HOME/.bash_it/aliases/
