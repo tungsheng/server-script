@@ -3,9 +3,8 @@
 set -e
 
 println() {
-    echo -e "\n"
-    echo -e "$1..."
-    echo -e "\n"
+    echo -ne "\n\n$1"
+    echo -ne "\n===========================================\n"
 }
 
 # install docker
