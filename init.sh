@@ -1,6 +1,7 @@
 #!/bin/bash
 export log_file=$HOME/install_progress_log.txt
 export repo=$HOME/server-script
+export PATH=$PATH:/bin:/usr/bin
 
 println() {
     echo -ne "\n\n$1"
