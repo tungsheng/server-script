@@ -15,7 +15,7 @@ sudo adduser deploy
 
 println "Add user to sudo..."
 usermod -aG sudo deploy
-sudo cp -r ~/.ssh /home/deploy
+sudo cp -r $HOME/.ssh /home/deploy
 sudo chown -R deploy:deploy /home/deploy/.ssh
 
 println "Initiating..."
@@ -76,14 +76,14 @@ cd ../
 rm -rf clvv-fasd-4822024/
 
 println "Installing bash-it..."
-git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
-~/.bash_it/install.sh
+git clone --depth=1 https://github.com/Bash-it/bash-it.git $HOME/.bash_it
+$HOME/.bash_it/install.sh
 source /root/.bashrc
 
 # enable completion/plugin/alias
-bash-it enable completion dirs docker docker-compose git go
-bash-it enable alias git docker docker-compose
-bash-it enable plugin git docker docker-compose fasd
+$HOME/.bash_it/bash-it enable completion dirs docker docker-compose git go
+$HOME/.bash_it/bash-it enable alias git docker docker-compose
+$HOME/.bash_it/bash-it enable plugin git docker docker-compose fasd
 
 # add custom alias
 sudo cp $repo/aliases/custom.aliases.bash $HOME/.bash_it/aliases/
@@ -104,9 +104,9 @@ sudo tic -x $repo/color/tmux-256color-italic.terminfo
 println "Update packages..."
 sudo apt -y update
 
-println "installing to ~/.config"
+println "installing to $HOME/.config"
 if [ ! -d $HOME/.config ]; then
-    echo "Creating ~/.config"
+    echo "Creating $HOME/.config"
     sudo mkdir -p $HOME/.config
 fi
 # configs=$( find -path "$repo/config.symlink" -maxdepth 1 )
