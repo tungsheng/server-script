@@ -1,7 +1,6 @@
 #!/bin/bash
 export log_file=$HOME/install_progress_log.txt
 export repo=$HOME/server-script
-export PATH=$PATH:/bin:/usr/bin
 
 println() {
     echo -ne "\n\n$1"
@@ -90,7 +89,7 @@ bash-it enable plugin git docker docker-compose fasd
 sudo cp $repo/aliases/custom.aliases.bash $HOME/.bash_it/aliases/
 
 # use bakke theme
-sudo sed -i 's/bobby/bakke/g' .bashrc
+sudo sed -i 's/bobby/bakke/g' /root/.bashrc
 
 println "Installing neovim..."
 sudo curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
