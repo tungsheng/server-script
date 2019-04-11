@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 export log_file=$HOME/install_progress_log.txt
 export repo=$HOME/server-script
 
