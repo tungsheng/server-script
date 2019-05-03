@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # variables
-version=1.11.1
+version=1.12.4
 
 # install Go
 wget "https://dl.google.com/go/go$version.linux-amd64.tar.gz"
