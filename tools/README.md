@@ -31,7 +31,7 @@ $ cd /opt/traefik/ && docker-compose up -d
 1. copy `drone` folder to `/home/`
 
 ```sh
-$ cp -r traefik /home/
+$ cp -r drone /home/
 ```
 
 2. update the drone setting in `.env`

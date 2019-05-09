@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  proxy:
+    image: traefik:latest
+    restart: always
+    container_name: traefik
+    command: --web -c /etc/traefik/traefik.toml
+    networks:
+      - web
+    ports:
+      - 80:80
+      - 443:443
+      - 8080:8080
+    labels:
+      - "traefik.frontend.rule=Host:dev.DOMAIN.com"
+      - "traefik.port=8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik.toml:/etc/traefik/traefik.toml
+      - ./acme.json:/acme.json
+
+  nginx:
+    image: nginx:alpine
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.frontend.rule=Host:web.DOMAIN.com"
+      - "traefik.frontend.entryPoints=http,https"
+    networks:
+      - web
+    volumes:
+      - /home/deploy/DOMAIN/web:/usr/share/nginx/html
+
+networks:
+  web:
+    external: true
